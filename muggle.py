@@ -1,12 +1,19 @@
-from Tkinter import *
-import keyboard
-import tkMessageBox
-import Tkinter
+import tkinter #as tk
+#import keyboard
+from tkinter import messagebox as tkMessageBox
+#import Tkinter
 import os
 import subprocess
 
-root = Tk()
+window = tkinter.Tk()
+# to rename the title of the window
+window.title("GUI")
+# pack is used to show the object in the window
+label = tkinter.Label(window, text = "Hello World!").pack()
+window.mainloop()
 
+'''
+root = Tk()
 
 def close_window():
     exit(0)
@@ -49,3 +56,4 @@ frame.bind("<Key>", key)
 frame.bind("<Button-1>", callback)
 frame.pack()
 root.mainloop()
+'''

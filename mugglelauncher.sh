@@ -1,2 +1,2 @@
 #!/bin/sh
-python ~/config/muggle.py
+python muggle.py
