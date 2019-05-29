@@ -1,19 +1,35 @@
-import tkinter #as tk
-#import keyboard
+import tkinter
+import keyboard
 from tkinter import messagebox as tkMessageBox
-#import Tkinter
 import os
 import subprocess
 
 window = tkinter.Tk()
 # to rename the title of the window
-window.title("GUI")
+window.title("Muggle")
 # pack is used to show the object in the window
-label = tkinter.Label(window, text = "Hello World!").pack()
+window.geometry("150x300")
+label = tkinter.Label(window, text = "Launch").pack()
+#window.withdraw()
 window.mainloop()
 
-'''
 root = Tk()
+
+
+def ocWin():
+   print("ocWin") 
+
+
+def center_window(width=300, height=200):
+    # get screen width and height
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    # calculate position x and y coordinates
+    x = (screen_width/2) - (width/2)
+    y = (screen_height/2) - (height/2)
+    root.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
 
 def close_window():
     exit(0)
@@ -22,7 +38,7 @@ def close_window():
 def key(event):
     if event.char == 'q':
         close_window()
-        print "pressed", repr(event.char)
+        print("pressed", repr(event.char))
 
 def on_select(event,x):
         y = ["notes","guake","scratch-pad"]
@@ -43,17 +59,7 @@ def list():
 
 def callback(event):
     frame.focus_set()
-    print "clicked at", event.x, event.y
+    print("clicked at", event.x, event.y)
 
 
-root.title("Muggle")
-root.eval('tk::PlaceWindow %s center' %
-          root.winfo_pathname(root.winfo_id()))
-root.attributes('-alpha', .6)  # transparent window
-list()
-frame = Frame(root, width=200, height=200)
-frame.bind("<Key>", key)
-frame.bind("<Button-1>", callback)
-frame.pack()
-root.mainloop()
-'''
+
