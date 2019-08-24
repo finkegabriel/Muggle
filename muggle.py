@@ -1,18 +1,16 @@
-import tkinter #as tk
+from tkinter import *
 #import keyboard
 from tkinter import messagebox as tkMessageBox
 #import Tkinter
 import os
 import subprocess
 
-window = tkinter.Tk()
+#window = tkinter.Tk()
 # to rename the title of the window
-window.title("GUI")
+#window.title("GUI")
 # pack is used to show the object in the window
-label = tkinter.Label(window, text = "Hello World!").pack()
-window.mainloop()
-
-'''
+#label = tkinter.Label(window, text = "Hello World!").pack()
+#window.mainloop()
 root = Tk()
 
 def close_window():
@@ -22,7 +20,7 @@ def close_window():
 def key(event):
     if event.char == 'q':
         close_window()
-        print "pressed", repr(event.char)
+        print("pressed", repr(event.char))
 
 def on_select(event,x):
         y = ["notes","guake","scratch-pad"]
@@ -43,7 +41,7 @@ def list():
 
 def callback(event):
     frame.focus_set()
-    print "clicked at", event.x, event.y
+    print("clicked at", event.x, event.y)
 
 
 root.title("Muggle")
@@ -56,4 +54,4 @@ frame.bind("<Key>", key)
 frame.bind("<Button-1>", callback)
 frame.pack()
 root.mainloop()
-'''
+
