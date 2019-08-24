@@ -1,2 +1,2 @@
 #!/bin/sh
-python muggle.py
+python3 muggle.py
