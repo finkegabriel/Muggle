@@ -10,13 +10,14 @@ root = Tk()
 def press_callback(key):
         o = '{}'.format(key)
         value=str((x.get(ACTIVE)))
-        print(o)
+        # print(o)
         if o == 'Key.enter':
                 #uncomment to debug
                 #print("pressed ",value)
                 if value == 'scratch-pad':
-                        scratchPad()
                         theKill(2)
+                        os.system('gedit')
+		        
 
                 if value == 'terminal':
                         theKill(2)
