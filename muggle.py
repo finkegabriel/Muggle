@@ -16,7 +16,15 @@ def press_callback(key):
                 if value == 'scratch-pad':
                         theKill(2)
                         os.system('gedit')
-                        theKill(0)
+
+                if value == 'terminal':
+                        theKill(2)
+                        os.system('lxterminal')
+
+                if value == 'chrome':
+                        os.system('google-chrome')
+                        theKill(2)
+                        
         if o == "'q'":
                 print("exit")
                 theKill(0)
@@ -40,14 +48,9 @@ root.eval('tk::PlaceWindow %s center' %
           root.winfo_pathname(root.winfo_id()))
 root.attributes('-alpha', 0)  # transparent window
 x = Listbox(root)       
-s = ["notify","scratch-pad"]
-items(s)
-
-
 x.pack()
-
-
-
 frame = Frame(root, width=200, height=200)
+s = ["terminal","chrome","scratch-pad"]
+items(s)
 frame.pack()
 root.mainloop()
