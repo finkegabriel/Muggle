@@ -1,49 +1,47 @@
 from tkinter import *
-import keyboard
+from pynput import keyboard
 from tkinter import messagebox as tkMessageBox
 import os
 import subprocess
-
+import sys
 root = Tk()
 
-def close_window():
-    exit(0)
-    #keyboard.press_and_release('q')
+def press_callback(key):
+        o = '{}'.format(key)
+        value=str((x.get(ACTIVE)))
+        # print(o)
+        if o == 'Key.enter':
+                print("pressed ",value)
+                if value == 'terminal':
+                        os.system('lxterminal')
+                theKill()
 
-def key(event):
-    if event.char == 'q':
-        close_window()
-        print("pressed", repr(event.char))
-
-def on_select(event,x):
-        y = ["notes","guake","scratch-pad"]
-        for i in range(len(x)):
-                print(y[x])
-                return 1 #os.system(y[x])
-        
-
-def list():
-        #create items for list
-        listItems = ["notes","terminal","scratch-pad"]
-        x = Listbox(root)       
-        x.bind('<<ListboxSelect>>', on_select)
-
-        for i in range(len(listItems)):
-                x.insert('end',listItems[i])
-        x.pack()
-
-
-def callback(event):
-    frame.focus_set()
-    print("clicked at", event.x, event.y)
+        if o == "'q'":
+                print("exit")
+                root.destroy()
+                exit()
+def theKill():
+        root.destroy()
+        exit()
+def items(t):
+      l = keyboard.Listener(on_press=press_callback)
+      l.start()
+      for item in t:
+        x.insert(END, item)        
 
 root.title("Muggle")
 root.eval('tk::PlaceWindow %s center' %
           root.winfo_pathname(root.winfo_id()))
 root.attributes('-alpha', .6)  # transparent window
-list()
+x = Listbox(root)       
+s = ["notes","terminal","scratch-pad"]
+items(s)
+
+
+x.pack()
+
+
+
 frame = Frame(root, width=200, height=200)
-frame.bind("<Key>", key)
-# frame.bind("<Button-1>", callback)
 frame.pack()
 root.mainloop()
