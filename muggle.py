@@ -1,49 +1,56 @@
 from tkinter import *
-import keyboard
+from pynput import keyboard
 from tkinter import messagebox as tkMessageBox
 import os
 import subprocess
-
+import sys
 root = Tk()
 
-def close_window():
-    exit(0)
-    #keyboard.press_and_release('q')
+def press_callback(key):
+        o = '{}'.format(key)
+        value=str((x.get(ACTIVE)))
+        # print(o)
+        if o == 'Key.enter':
+                #uncomment to debug
+                # print("pressed ",value)
+                if value == 'scratch-pad':
+                        theKill(2)
+                        os.system('gedit')
 
-def key(event):
-    if event.char == 'q':
-        close_window()
-        print("pressed", repr(event.char))
+                if value == 'terminal':
+                        theKill(2)
+                        os.system('lxterminal')
 
-def on_select(event,x):
-        y = ["notes","guake","scratch-pad"]
-        for i in range(len(x)):
-                print(y[x])
-                return 1 #os.system(y[x])
-        
+                if value == 'chrome':
+                        os.system('google-chrome')
+                        theKill(2)
+                        
+        if o == "'q'":
+                print("exit")
+                theKill(0)
 
-def list():
-        #create items for list
-        listItems = ["notes","terminal","scratch-pad"]
-        x = Listbox(root)       
-        x.bind('<<ListboxSelect>>', on_select)
-
-        for i in range(len(listItems)):
-                x.insert('end',listItems[i])
-        x.pack()
-
-
-def callback(event):
-    frame.focus_set()
-    print("clicked at", event.x, event.y)
+def theKill(x):
+        if x == 0:
+                root.destroy()
+                exit()
+        if x == 1:
+                exit()
+        if x == 2:
+                root.destroy()
+def items(t):
+      l = keyboard.Listener(on_press=press_callback)
+      l.start()
+      for item in t:
+        x.insert(END, item)        
 
 root.title("Muggle")
 root.eval('tk::PlaceWindow %s center' %
           root.winfo_pathname(root.winfo_id()))
-root.attributes('-alpha', .6)  # transparent window
-list()
+root.attributes('-alpha', 0)  # transparent window
+x = Listbox(root)       
+x.pack()
 frame = Frame(root, width=200, height=200)
-frame.bind("<Key>", key)
-# frame.bind("<Button-1>", callback)
+s = ["terminal","chrome","scratch-pad"]
+items(s)
 frame.pack()
 root.mainloop()
