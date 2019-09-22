@@ -11,18 +11,24 @@ def press_callback(key):
         value=str((x.get(ACTIVE)))
         # print(o)
         if o == 'Key.enter':
-                print("pressed ",value)
-                if value == 'terminal':
-                        os.system('lxterminal')
-                theKill()
-
+                #uncomment to debug
+                # print("pressed ",value)
+                if value == 'scratch-pad':
+                        theKill(2)
+                        os.system('gedit')
+                        theKill(0)
         if o == "'q'":
                 print("exit")
+                theKill(0)
+
+def theKill(x):
+        if x == 0:
                 root.destroy()
                 exit()
-def theKill():
-        root.destroy()
-        exit()
+        if x == 1:
+                exit()
+        if x == 2:
+                root.destroy()
 def items(t):
       l = keyboard.Listener(on_press=press_callback)
       l.start()
@@ -32,9 +38,9 @@ def items(t):
 root.title("Muggle")
 root.eval('tk::PlaceWindow %s center' %
           root.winfo_pathname(root.winfo_id()))
-root.attributes('-alpha', .6)  # transparent window
+root.attributes('-alpha', 0)  # transparent window
 x = Listbox(root)       
-s = ["notes","terminal","scratch-pad"]
+s = ["notify","scratch-pad"]
 items(s)
 
 
