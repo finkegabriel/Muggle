@@ -4,9 +4,10 @@ from tkinter import messagebox as tkMessageBox
 import os
 import subprocess
 import sys
+import tools
 root = Tk()
 
-
+        
 def press_callback(key):
         o = '{}'.format(key)
         value=str((x.get(ACTIVE)))
@@ -14,26 +15,26 @@ def press_callback(key):
         if o == 'Key.enter':
                 #uncomment to debug
                 #print("pressed ",value)
-                if value == 'scratch-pad':
+                if value == tools.label1:
                         theKill(2)
-                        os.system('gedit')
+                        os.system(tools.item1)
 		        
 
-                if value == 'terminal':
+                if value == tools.label2:
                         theKill(2)
-                        os.system('lxterminal')
+                        os.system(tools.item2)
 
-                if value == 'chrome':
-                        os.system('google-chrome')
+                if value == tools.label3:
+                        os.system(tools.item3)
+                        theKill(2)
+
+                if value == tools.label4:
+                        os.system(tools.item4)
                         theKill(2)
                         
         if o == 'Key.f11':
                 print("exit")
-                theKill(0)
-
-def scratchPad():
-        print("pad")
-        
+                theKill(0)        
 
 def theKill(x):
         if x == 0:
@@ -56,7 +57,7 @@ root.attributes('-alpha', 0)  # transparent window
 x = Listbox(root)       
 x.pack()
 frame = Frame(root, width=200, height=200)
-s = ["terminal","notify","chrome","scratch-pad"]
+s = [tools.label1,tools.label2,tools.label3,tools.label4]
 items(s)
 frame.pack()
 root.mainloop()
